@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disable Cheating Features</title>
+</head>
+<body>
+    <h1>Cheating Features Disabled</h1>
+    <p>Try using copy, paste, cut, or inspect element commands.</p>
+
+    <script>
+        // Right-click menu disable karna
+        // Jab user right-click karega toh context menu block hoga aur alert dikhaya jayega
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault(); // Default context menu ko rok do
+            alert('Right-click is disabled on this website.'); // User ko message dikhana
+        });
+
+        // Keyboard shortcuts ko disable karna (cut, copy, paste, inspect, view source)
+        document.addEventListener('keydown', function(event) {
+            if (
+                // Ctrl ke sath specific keys ke combinations check karna
+                (event.ctrlKey && ['c', 'v', 'x', 'u', 's'].includes(event.key.toLowerCase())) ||
+                // F12 key ko disable karna (Inspect Element ke liye hota hai)
+                event.key === 'F12' ||
+                // Ctrl+Shift+I ko disable karna (Inspect Element ke liye hota hai)
+                (event.ctrlKey && event.shiftKey && event.key.toLowerCase() === 'i') ||
+                // Ctrl+Shift+J ko disable karna (Console ke liye hota hai)
+                (event.ctrlKey && event.shiftKey && event.key.toLowerCase() === 'j') ||
+                // Ctrl+Shift+C ko disable karna (Inspect Element ke liye hota hai)
+                (event.ctrlKey && event.shiftKey && event.key.toLowerCase() === 'c')
+            ) {
+                event.preventDefault(); // Shortcut action ko block karo
+                alert('This action is disabled on this website.'); // User ko message dikhana
+            }
+        });
+
+        // Drag and drop functionality disable karna
+        // Jab user kisi element ko drag karega toh usko block karenge
+        document.addEventListener('dragstart', function(event) {
+            event.preventDefault(); // Dragging action ko block karo
+            alert('Dragging is disabled on this website.'); // User ko message dikhana
+        });
+
+        // Cut, copy aur paste events ko disable karna
+        document.addEventListener('cut', function(event) {
+            event.preventDefault(); // Cut operation ko block karo
+            alert('Cutting is disabled on this website.'); // User ko message dikhana
+        });
+
+        document.addEventListener('copy', function(event) {
+            event.preventDefault(); // Copy operation ko block karo
+            alert('Copying is disabled on this website.'); // User ko message dikhana
+        });
+
+        document.addEventListener('paste', function(event) {
+            event.preventDefault(); // Paste operation ko block karo
+            alert('Pasting is disabled on this website.'); // User ko message dikhana
+        });
+    </script>
+</body>
+</html>
