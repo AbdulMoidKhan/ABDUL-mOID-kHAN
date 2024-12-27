@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheating Disable</title>
+</head>
+<body>
+    <h1>Cheating Disable</h1>
+    <p>Try using copy, paste, cut, inspect and save</p>
+
+    <script>
+        document.addEventListener('contextmenu',function(event){
+            event.preventDefault();
+
+            alert('Right-click is disabled');
+        });
+
+        document.addEventListener('keydown',function(event){
+            if(
+                (event.ctrlKey && ['c','v','x','u','s'].includes(event.key.toLocaleLowerCase()))  ||  // copy, paste, cut, inspect and save
+                 event.key === 'F12' || //inspect
+                (event.ctrlKey && event.shiftKey && event.key.toLocaleLowerCase() === 'i') || //inspect
+                (event.ctrlKey && event.shiftKey && event.key.toLocaleLowerCase() === 'j') || //console
+                (event.ctrlKey && event.shiftKey && event.key.toLocaleLowerCase() === 'c')  // inspect element
+            ){
+                event.preventDefault();
+                alert('This action is disabled');
+            }
+        })
+    </script>
+    
+</body>
+</html>
